@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html ng-app="gemStore">
+    <head>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+        <script type="text/javascript" src="js/angular.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/products.js"></script>
+    </head>
+    <body class="list-group" ng-controller="StoreController as store">
+        <header>
+            <h1 class="text-center">Flatlander Crafted Gems</h1>
+            <h2 class="text-center"> - an Angular store - </h2>
+        </header>
+        <div class="list-group-item" ng-repeat="product in store.products">
+            <h3>
+                {{product.name}}
+                <em class="pull-right">
+                    {{product.price | currency}}
+                </em>
+            </h3>
+            <product-gallery></product-gallery>
+
+          <section class="tab">
+                <product-tabs></product-tabs>
+                <product-description></product-description>
+                <product-specs></product-specs>
+                <product-reviews></product-reviews>
+                <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" 
+                                        ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)">
+                    <blockquote ng-show="reviewCtrl.review.stars > 0">
+                        <strong>{{reviewCtrl.review.stars}} Stars</strong>
+                        <div ng-show="reviewCtrl.review.body.length">
+                            <p> {{reviewCtrl.review.body}} </p>
+                        </div>
+                        <cite class="clearfix">by: {{reviewCtrl.review.author}}</cite>
+                    </blockquote>
+
+                    <h4>Submit a Review</h4>
+                    <fieldset class="form-group">
+                        <select class="form-control" ng-options="star for stars in [5,4,3,2,1]"  title="Stars" ng-model="reviewCtrl.review.stars" required>
+                            <option value="">Rate the Product</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                       <textarea class="form-control" placeholder="Write a short review of the product..." title="Review"  ng-model="reviewCtrl.review.body">
+                       </textarea>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="reviewCtrl.review.author" required/>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input type="submit" class="btn btn-primary pull-right" value="Submit Review"/>
+                    </fieldset>
+                </form>
+          </section>
+        </div>
+  </body>
+</html>

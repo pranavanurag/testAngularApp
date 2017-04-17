@@ -4,7 +4,7 @@
     app.controller('StoreController', ['$http', function ($http){
         var store = this;
         store.products = [];
-        $http.get('/testAngularApp/json/gems.json').then(function successful(response) {
+        $http.get('/json/gems.json').then(function successful(response) {
             store.products = response.data;
         });
         console.log(store.products);

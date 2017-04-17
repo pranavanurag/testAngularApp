@@ -12,3 +12,5 @@ cd into the project folder and run
 <code>python -m SimpleHTTPServer</code>
 
 and then you may use your browser to access the localhost created by the python server.
+
+Alternatively, a Github pages demo is hosted here: https://pranavanurag.github.io/testAngularApp/
